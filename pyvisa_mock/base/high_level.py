@@ -373,9 +373,9 @@ class MockVisaLibrary(highlevel.VisaLibraryBase):
         reply = self._sessions[session_idx].read(count)
         return reply, StatusCode.success
 
-    def write(self, session_idx: int, data: str) -> STATUS_CODE:
+    def write(self, session_idx: int, data: str) -> Tuple[int, STATUS_CODE]:
         self._sessions[session_idx].write(data)
-        return StatusCode.success
+        return len(data), StatusCode.success
 
     def clear(self, session_idx: int) -> None:
         return None
